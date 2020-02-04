@@ -1,0 +1,54 @@
+from ElasticClient import ElasticClient as es
+import json
+import urllib
+
+user = "abubaker"
+ppassword = "BDf%tJ#VS@6JrAw@9Ktc"
+
+ppassword = urllib.parse.quote(ppassword)
+
+client = es(user, ppassword)
+query = json.load(open("query.json"))
+
+response = client.send_query(query, scroll=True, size=1000)
+
+hits = response['hits']['hits']  # dictionary of dictionary
+
+wdk = "@timestamp\t message\n"
+
+'''
+`node_id = nodeID(node_type, node)
+				qb = QueryBuilder(nodes = [node_id], logs = self.logs, dateRange=self.dates)
+				query = qb.build_query()
+				results = client.send_query(query, scroll = self.scroll, size = self.size)
+				entries = entryBuilder.createEntries(results)
+				fb.addEntries(entries)
+				if (self.scroll):
+					size = len(results[‘hits’][‘hits’])
+					print(size)
+					while (size > 0):
+						size, page = client.scroll()
+						if size == 0:
+							break
+						entries = entryBuilder.createEntries(page)
+						fb.addEntries(entries)`
+
+						'''
+
+size = len(response['hits']['hits'])
+while (size > 0):
+    print(size)
+    size, page = client.scroll()
+    if size == 0:
+        break
+    for hit in hits:
+        log_entry = hit['_source']  # why!!
+        wdk += log_entry['@timestamp']
+        wdk += "\t"
+        wdk += log_entry['message']
+        wdk += "\n"
+
+    hits = page['hits']['hits']
+    size = len(page['hits']['hits'])
+with open('last.txt', 'w') as f:
+    f.write(wdk)
