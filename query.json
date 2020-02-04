@@ -2,9 +2,7 @@
  "from" : 0, "size" : 10000,
  "query": {
    "query_string": {
-     "query": "(source:auth.log)"
+     "query": "(source:auth.log)AND (timestamp:Jan) AND (node_id:pcvm604-13) AND(sshd_remote_ip: 155.98.37.76)"
    }
  }
 }
-
-

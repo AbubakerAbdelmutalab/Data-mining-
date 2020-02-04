@@ -20,19 +20,23 @@ wdk = "@timestamp\t message\n"
 size = len(response['hits']['hits'])
 print(size)
 while (size > 0):
-    print(size)
-    size, page = client.scroll()
-    if size == 0:
-        break
     for hit in hits:
         log_entry = hit['_source']  # why!!
         wdk += log_entry['@timestamp']
         wdk += "\t"
         wdk += log_entry['message']
         wdk += "\n"
-
-    hits = page['hits']['hits']
-    size = len(page['hits']['hits'])
-    print(size)
     with open('last.txt', 'w') as f:
          f.write(wdk)
+    size, page = client.scroll()
+    if size == 0:
+        break
+    hits = page['hits']['hits']
+    print(size)
+
+
+
+
+
+    # size = len(page['hits']['hits'])
+
