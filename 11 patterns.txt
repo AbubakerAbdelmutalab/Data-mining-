@@ -1,0 +1,11 @@
+auth.log,2
+"%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Received disconnect from %{IP:sshd_remote_ip} port %{INT:sshd_remote_port}:%{INT:sshd_code}: Normal Shutdown, Thank you for playing \[%{WORD:sshd_disconnect_stage}\]",
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Disconnected from authenticating user %{WORD:sshd_username} %{IP:sshd_remote_ip} port %{INT:sshd_remote_port} \[%{WORD:sshd_disconnect_stage}\],
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Disconnected from %{IP:sshd_remote_ip} port %{INT:sshd_remote_port} \[%{WORD:sshd_disconnect_stage}\],
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Received disconnect from %{IP:sshd_remote_ip} port %{INT:sshd_remote_port}:%{INT:sshd_code}: Bye Bye \[%{WORD:sshd_disconnect_stage}\],
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Invalid user %{WORD:sshd_username} from %{IP:sshd_remote_ip} port %{INT:sshd_remote_port},
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Invalid user %{WORD:sshd_username} from %{IP:sshd_remote_ip},
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: input_userauth_request: invalid user %{WORD:sshd_username} \[%{WORD:sshd_disconnect_stage}\],
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Received disconnect from %{IP:sshd_remote_ip} port %{INT:sshd_remote_port}:%{INT:sshd_code}: disconnected by user,
+%{SYSLOGTIMESTAMP:timestamp} %{USERNAME:node_id} %{WORD:sshd_hostname} sshd\[%{INT:pid}\]: Disconnecting: Too many authentication failures \[%{WORD:sshd_disconnect_stage}\],
+%{SYSLOGTIMESTAMP:timestamp} %{WORD:target} sshd\[%{INT:c}\]: Accepted publickey for root from %{IP:ip} port %{INT:d} ssh2:%{GREEDYDATA:greedy}
