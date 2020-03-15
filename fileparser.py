@@ -21,10 +21,10 @@ for line in lines[1:]:
     line = line.split("\t")
     line = line[1]
     timestamp = re.findall(r"\d{2}:\d{2}:\d{2}",line)[0]
-    length = len(timestamp) + 1 + line.find(timestamp[0])
-    nodeid = line[length :]
-    nodeid = nodeid.split(" ")
-    nodeid = nodeid[0]
+    length = len(timestamp) + 1 + line.find(timestamp)
+    # print(line.find(timestamp))
+    nodeid = line[length:]
+    nodeid = nodeid.split(" ")[0]
     ipadd = "NULL"
     username = "NULL"
     line = line.replace(timestamp,'')
